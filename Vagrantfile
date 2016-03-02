@@ -9,11 +9,13 @@ Vagrant.configure("2") do |config|
     [ "debian-jessie", "debian/jessie64" ]
   ]
 
+  second_drive = '.vagrant/disk_data.vdi'
+
   config.vm.provider "virtualbox" do |v|
     v.cpus = 1
     v.memory = 256
-    v.customize ['createhd', '--filename', 'disk_data.vdi', '--size', 1024]
-    v.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', 'disk_data.vdi']
+    v.customize ['createhd', '--filename', second_drive, '--size', 1024]
+    v.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', second_drive]
   end
 
   vms.each do |vm|
@@ -25,7 +27,7 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "tests/test.yml"
         ansible.groups = { "test" => [ vm[0] ] }
         ansible.verbose = 'vv'
-				ansible.sudo = true
+        ansible.sudo = true
       end
     end
   end

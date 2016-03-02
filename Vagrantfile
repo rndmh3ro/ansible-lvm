@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.cpus = 1
     v.memory = 256
+    v.customize ['createhd', '--filename', 'disk_data.vdi', '--size', 1024]
+    v.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', 'disk_data.vdi']
   end
 
   vms.each do |vm|

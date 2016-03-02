@@ -1,7 +1,7 @@
 LVM Ansible role
 ================
 
-Work in progress: not ready!!!!!!!!!!!
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.lvm-blue.svg)](https://galaxy.ansible.com/HanXHX/lvm) [![Build Status](https://travis-ci.org/HanXHX/ansible-lvm.svg)](https://travis-ci.org/HanXHX/ansible-redis)
 
 Role to manage LVM Groups/Logical Volumes. Can be used to create, extend or resize LVM Groups and volumes.
 

@@ -42,6 +42,7 @@
     src: "/dev/{{ item.0.vgname }}/{{ item.1.lvname }}"
     fstype: "{{ item.1.filesystem }}"
     state: mounted
+    opts: "{{ item.1.mount_opts | default('defaults') }}"
   with_subelements:
     - "{{ lvm_groups }}"
     - lvnames

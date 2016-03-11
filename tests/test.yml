@@ -14,7 +14,7 @@
             filesystem: 'ext4'
             mount: true
             mount_point: '/data'
-            mount_opts: 'defaults,noatime'
+            mount_options: 'defaults,noatime'
       - vgname: 'more-vg'
         disks: '/dev/sdc'
         create: true

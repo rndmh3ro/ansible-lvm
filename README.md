@@ -32,36 +32,6 @@ Role Variables
 - `mount_point`: defines mountpoint
 - `mount_options`: defines mount options (comma separated)
 
-
-````
----
-# defaults file for ansible-manage-lvm
-lvm_groups:
-  - vgname: ubuntu-vg
-    disks: /dev/sda5,/dev/sdc,/dev/sdd  #for multiple disks...../dev/sdb,/dev/sdc
-    create: true  #defines if VG should exist or be removed....true or false
-    lvnames:
-      - lvname: swap_1
-        size: 5g  #define size of lvol...100%FREE, 10g, 1024 (megabytes by default)
-        create: true  #defines if lvol should exist or be removed...true or false
-        filesystem: swap  #defines filesystem to format lvol as
-        mount: false  #defines if filesystem should be mounted
-        mount_point: []  #defines mountpoint for lvol
-      - lvname: root
-        size: 40g  #define size of lvol...100%FREE, 10g, 1024 (megabytes by default)
-        create: true  #defines if lvol should exist or be removed...true or false
-        filesystem: ext4  #defines filesystem to format lvol as
-        mount: true
-        mount_point: /  #defines mountpoint for lvol
-
-# VG whitout LV
-  - vgname: test-vg
-    disks: /dev/sdb  #for multiple disks...../dev/sdb,/dev/sdc
-    create: true  #defines if VG should exist or be removed....true or false
-    lvnames: []
-lvm_apply: false  #defines if LVM will be managed by role....default is false to ensure nothing is changed by accident.
-````
-
 Dependencies
 ------------
 
@@ -72,7 +42,7 @@ Example Playbook
 
     - hosts: servers
       vars:
-      - vgname: ubuntu-vg
+      - vgname: misc-vg
         disks: /dev/sda5,/dev/sdc,/dev/sdd
         create: true
         lvnames:

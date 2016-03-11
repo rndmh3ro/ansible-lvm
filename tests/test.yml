@@ -13,7 +13,7 @@
             create: true
             filesystem: 'ext4'
             mount: true
-            mntp: '/data'
+            mount_point: '/data'
             mount_opts: 'defaults,noatime'
       - vgname: 'more-vg'
         disks: '/dev/sdc'

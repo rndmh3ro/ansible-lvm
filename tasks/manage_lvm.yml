@@ -38,7 +38,7 @@
 
 - name: MOUNT | Mounting new filesystem(s)
   mount:
-    name: "{{ item.1.mntp }}"
+    name: "{{ item.1.mount_point }}"
     src: "/dev/{{ item.0.vgname }}/{{ item.1.lvname }}"
     fstype: "{{ item.1.filesystem }}"
     state: mounted
@@ -68,7 +68,7 @@
 
 - name: MOUNT | Unmounting filesystem(s)
   mount:
-    name: "{{ item.1.mntp }}"
+    name: "{{ item.1.mount_point }}"
     src: "/dev/{{ item.0.vgname }}/{{ item.1.lvname }}"
     fstype: "{{ item.1.filesystem }}"
     state: absent

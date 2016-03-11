@@ -26,13 +26,13 @@ lvm_groups:
         create: true  #defines if lvol should exist or be removed...true or false
         filesystem: swap  #defines filesystem to format lvol as
         mount: false  #defines if filesystem should be mounted
-        mntp: []  #defines mountpoint for lvol
+        mount_point: []  #defines mountpoint for lvol
       - lvname: root
         size: 40g  #define size of lvol...100%FREE, 10g, 1024 (megabytes by default)
         create: true  #defines if lvol should exist or be removed...true or false
         filesystem: ext4  #defines filesystem to format lvol as
         mount: true
-        mntp: /  #defines mountpoint for lvol
+        mount_point: /  #defines mountpoint for lvol
 
 # VG whitout LV
   - vgname: test-vg

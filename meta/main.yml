@@ -2,7 +2,7 @@
 galaxy_info:
   author: Emilien Mantel
   description: Role to manage LVM Groups/Logical Volumes. Can be used to create, extend or resize LVM.
-  company: your company (optional)
+  company:
   license: BSD
   min_ansible_version: 1.9
   platforms:

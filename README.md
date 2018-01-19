@@ -42,27 +42,29 @@ Example Playbook
 
     - hosts: servers
       vars:
-      - vgname: misc-vg
-        disks: /dev/sda5,/dev/sdc,/dev/sdd
-        create: true
-        lvnames:
-          - lvname: swap_1
-            size: 5g
+        lvm_apply: true
+        lvm_groups:
+          - vgname: misc-vg
+            disks: /dev/sda5,/dev/sdc,/dev/sdd
             create: true
-            filesystem:
-            mount: false
-          - lvname: mysql
-            size: 40g
+            lvnames:
+              - lvname: swap_1
+                size: 5g
+                create: true
+                filesystem:
+                mount: false
+              - lvname: mysql
+                size: 40g
+                create: true
+                filesystem: ext4
+                mount: true
+                mount_point: /var/lib/mysql
+                mount_options: 'defaults,noatime'
+          # VG whitout LV
+          - vgname: test-vg
+            disks: /dev/sdb
             create: true
-            filesystem: ext4
-            mount: true
-            mount_point: /var/lib/mysql
-            mount_options: 'defaults,noatime'
-        # VG whitout LV
-      - vgname: test-vg
-        disks: /dev/sdb
-        create: true
-        lvnames: []
+            lvnames: []
 
       roles:
          - HanXHX.lvm

@@ -19,4 +19,6 @@
 - name: COMMAND | Rescanning for new disks added
   command: /sbin/rescan-scsi-bus
   changed_when: false
-  when: scsi_devices.stdout != ""
+  when:
+    - scsi_devices.stdout is defined
+    - scsi_devices.stdout != ""

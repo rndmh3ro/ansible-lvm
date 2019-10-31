@@ -1,20 +1,22 @@
 ---
 
-- name: LVG | Creating new LVM volume group(s)
+- name: LVG | Manage LVM volume group(s)
   lvg:
     vg: "{{ item.vgname }}"
     pvs: "{{ item.disks }}"
-    state: present
+    state: "{{ item.state | default('present') }}"
   with_items: "{{ lvm_groups }}"
   when: item.create is defined and item.create
 
-- name: LVOL | Creating new LVM logical volume(s)
+- name: LVOL | Manage LVM logical volume(s)
   lvol:
     vg: "{{ item.0.vgname }}"
     lv: "{{ item.1.lvname }}"
     size: "{{ item.1.size }}"
-    shrink: "{{ item.1.schrink | default(yes) }}"
-    state: present
+    resizefs: "{{ item.1.resizefs | default('yes') }}"
+    shrink: "{{ item.1.schrink | default('no') }}"
+    force: "{{ item.1.force | default('no') }}"
+    state: "{{ item.1.state | default('present') }}"
   register: lvm
   with_subelements:
     - "{{ lvm_groups }}"
@@ -28,7 +30,6 @@
   filesystem:
     fstype: "{{ item.1.filesystem }}"
     dev: "/dev/{{ item.0.vgname }}/{{ item.1.lvname }}"
-    resizefs: yes 
   with_subelements:
     - "{{ lvm_groups }}"
     - lvnames
